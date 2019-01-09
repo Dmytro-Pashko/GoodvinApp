@@ -1,4 +1,4 @@
-package com.recycler.ui.recycler
+package com.presentation.ui.recycler
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.recycler.R
 import com.recycler.databinding.RecyclerFragmentBinding
 
@@ -23,8 +24,9 @@ class RecyclerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
-        binding = DataBindingUtil.inflate(inflater,R.layout.recycler_fragment,container,false)
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.recycler_fragment, container, false)
         return binding.root
     }
 
@@ -40,13 +42,15 @@ class RecyclerFragment : Fragment() {
 
         adapter = DataRowAdapter().also {
             binding.list.adapter = it
+            ItemTouchHelper(DataRowSwipeHandler(it)).attachToRecyclerView(binding.list)
         }
+
     }
 
     override fun onStart() {
         super.onStart()
         viewModel.data.observe(this, Observer {
-            if (it != null){
+            if (it != null) {
                 adapter.update(it)
             }
         })

@@ -1,8 +1,8 @@
-package com.recycler.ui.recycler
+package com.presentation.ui.recycler
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.recycler.model.DataRow
+import com.domain.model.DataRow
 
 class RecyclerViewModel : ViewModel() {
 

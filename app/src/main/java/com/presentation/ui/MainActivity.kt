@@ -1,10 +1,10 @@
-package com.recycler.ui
+package com.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.transaction
 import com.recycler.R
-import com.recycler.ui.recycler.RecyclerFragment
+import com.presentation.ui.recycler.RecyclerFragment
 
 class MainActivity : AppCompatActivity() {
 

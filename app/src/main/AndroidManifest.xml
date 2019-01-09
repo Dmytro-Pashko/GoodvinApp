@@ -7,7 +7,7 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.presentation.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -15,7 +15,7 @@
             </intent-filter>
         </activity>
 
-        <provider android:authorities="com.goodvin.app" android:name="com.utils.ContextProvider"/>
+        <provider android:authorities="com.goodvin.app" android:name="com.presentation.utils.ContextProvider"/>
     </application>
 
 </manifest>

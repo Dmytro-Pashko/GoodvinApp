@@ -1,4 +1,4 @@
-package com.utils
+package com.presentation.utils
 
 import android.content.ContentProvider
 import android.content.ContentValues

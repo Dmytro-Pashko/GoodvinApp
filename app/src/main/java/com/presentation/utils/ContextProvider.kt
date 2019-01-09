@@ -1,4 +1,4 @@
-package com.utils
+package com.presentation.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

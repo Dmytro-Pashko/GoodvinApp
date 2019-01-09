@@ -4,12 +4,14 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="item" type="com.recycler.model.DataRow"/>
+        <variable name="item" type="com.domain.model.DataRow"/>
     </data>
 
     <androidx.appcompat.widget.AppCompatTextView
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:padding="8dp"
+            android:background="@drawable/data_row_bg"
             android:text="@{item.data}"
             tools:text="@string/lorem"
             android:layout_height="wrap_content" android:gravity="center">

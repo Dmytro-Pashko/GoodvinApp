@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="model" type="com.recycler.ui.recycler.RecyclerViewModel"/>
+        <variable name="model" type="com.presentation.ui.recycler.RecyclerViewModel"/>
     </data>
     <FrameLayout
             android:layout_width="match_parent"

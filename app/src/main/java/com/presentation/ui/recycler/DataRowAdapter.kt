@@ -1,13 +1,13 @@
-package com.recycler.ui.recycler
+package com.presentation.ui.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.domain.model.DataRow
 import com.recycler.R
 import com.recycler.databinding.DataRowItemBinding
-import com.recycler.model.DataRow
-import com.utils.ContextProvider.Instance.appContext
+import com.presentation.utils.ContextProvider.Instance.appContext
 
 class DataRowAdapter : RecyclerView.Adapter<DataRowViewHolder>() {
 
@@ -27,6 +27,11 @@ class DataRowAdapter : RecyclerView.Adapter<DataRowViewHolder>() {
         list.clear()
         list.addAll(it)
         notifyDataSetChanged()
+    }
+
+    fun removeItemAt(index: Int) {
+        list.removeAt(index)
+        notifyItemRemoved(index)
     }
 }
 
