@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.recycler.R
-import com.recycler.databinding.FAnimatedLikeBinding
+import com.R
+import com.databinding.FAnimatedLikeBinding
 
 class AnimatedLikeFragment : Fragment() {
 

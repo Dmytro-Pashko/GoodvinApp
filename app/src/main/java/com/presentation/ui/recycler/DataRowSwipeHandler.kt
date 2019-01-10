@@ -4,6 +4,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 
+/**
+ * Created by Dmytro Pashko on 1/10/2019.
+ */
+
 class DataRowSwipeHandler(private val adapter: DataRowAdapter) :
     ItemTouchHelper.SimpleCallback(0, AVAILABLE_SWIPE_DIRS) {
 

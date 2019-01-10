@@ -8,7 +8,7 @@ import android.view.View
 import android.view.animation.BounceInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
-import com.recycler.R
+import com.R
 
 
 class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {

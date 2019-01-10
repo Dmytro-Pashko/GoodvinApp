@@ -1,11 +1,15 @@
 package com.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.transaction
 import com.presentation.ui.animatedLike.AnimatedLikeFragment
-import com.recycler.R
+import com.R
 import com.presentation.ui.recycler.RecyclerFragment
+
+/**
+ * Created by Dmytro Pashko on 1/10/2019.
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.transaction{
+            supportFragmentManager.transaction {
                 replace(R.id.container, AnimatedLikeFragment.newInstance())
             }
         }
