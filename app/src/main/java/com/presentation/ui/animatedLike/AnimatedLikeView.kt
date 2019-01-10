@@ -2,16 +2,14 @@ package com.presentation.ui.animatedLike
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.BounceInterpolator
 import android.view.animation.LinearInterpolator
-import androidx.core.graphics.scale
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.recycler.R
+
 
 class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
 
@@ -29,21 +27,15 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         it.interpolator = LinearInterpolator()
     }
 
-    private val particleAnimator = ValueAnimator.ofFloat(0.5f, 1f, 0f).also {
-        it.duration = 750
-        it.interpolator = LinearOutSlowInInterpolator()
-    }
-
     private val animationSet = android.animation.AnimatorSet().also {
         it.playSequentially(startAnimator, backAnimator)
     }
 
-    private var ratio = 1.0f
+    private var sizeRatio = 1.0f
 
-    private val heartDrawable = VectorDrawableCompat.create(resources, R.drawable.ic_heart, null).also {
-        it.
+    private val heart = VectorDrawableCompat.create(resources, R.drawable.ic_heart, null).also {
         if (it != null) {
-            ratio = it.intrinsicWidth.toFloat() / it.intrinsicHeight.toFloat()
+            sizeRatio = it.intrinsicWidth.toFloat() / it.intrinsicHeight.toFloat()
         }
     }
 
@@ -51,34 +43,38 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+
         drawHeart(canvas)
     }
 
     private fun drawHeart(canvas: Canvas?) {
+
+        if (heart == null || canvas == null) {
+            return
+        }
+
         val heartWidth = Math.round(width * 0.4)
-        val heartHeight = heartWidth / ratio
+        val heartHeight = heartWidth / sizeRatio
+
+        val left = ((width - heartWidth) / 2f).toInt()
+        val top = ((height - heartHeight) / 2f).toInt()
 
         if (animationSet.isRunning) {
             val animatedValue =
                 (animationSet.childAnimations.first { it.isRunning } as ValueAnimator).animatedValue as Float
-            val animatedWidth = (animatedValue * heartWidth) + heartWidth
-            val animatedHeight = (animatedValue * heartHeight) + heartHeight
 
-
-//            canvas?.drawBitmap(
-//                heartDrawable.scale(animatedWidth.toInt(), animatedHeight.toInt()),
-//                (width - animatedWidth) / 2f, (height - animatedHeight) / 2f, null
-//            )
-//            invalidate()
+            heart.setBounds(
+                (left - heartWidth * animatedValue).toInt(),
+                (top - heartHeight * animatedValue).toInt(),
+                (left + heartWidth + heartWidth * animatedValue).toInt(),
+                (top + heartHeight + heartHeight * animatedValue).toInt()
+            )
+            heart.draw(canvas)
+            invalidate()
         } else {
-
-                heartDrawable?.draw(canvas)
-//            canvas?.drawBitmap(
-//                heartDrawable.scale(heartWidth.toInt(), heartHeight.toInt()),
-//                (width - heartWidth) / 2f, (height - heartHeight) / 2f, null
-//            )
+            heart.setBounds(left, top, (left + heartWidth).toInt(), (top + heartHeight).toInt())
+            heart.draw(canvas)
         }
-        invalidate()
     }
 
     fun doLike() {
