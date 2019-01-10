@@ -3,6 +3,7 @@ package com.presentation.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.transaction
+import com.presentation.ui.animatedLike.AnimatedLikeFragment
 import com.recycler.R
 import com.presentation.ui.recycler.RecyclerFragment
 
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.transaction{
-                replace(R.id.container, RecyclerFragment.newInstance())
+                replace(R.id.container, AnimatedLikeFragment.newInstance())
             }
         }
     }

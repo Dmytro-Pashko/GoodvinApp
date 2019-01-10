@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.presentation.ui.animatedLike.AnimatedLikeView
 import com.recycler.R
 import com.recycler.databinding.RecyclerFragmentBinding
 
@@ -43,6 +44,11 @@ class RecyclerFragment : Fragment() {
         adapter = DataRowAdapter().also {
             binding.list.adapter = it
             ItemTouchHelper(DataRowSwipeHandler(it)).attachToRecyclerView(binding.list)
+        }
+
+        val v = view.findViewById<AnimatedLikeView>(R.id.likeView)
+        v.setOnClickListener {
+            v.doLike()
         }
 
     }
