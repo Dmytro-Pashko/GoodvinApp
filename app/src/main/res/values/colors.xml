@@ -3,4 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="like_animation_green">#FD9E16</color>
+    <color name="like_animation_blue">#12E7E6</color>
+    <color name="like_animation_red">#F30B7D</color>
 </resources>
