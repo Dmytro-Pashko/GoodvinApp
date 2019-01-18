@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.R
 import com.databinding.AnimatedLikeFragmentBinding
 import com.presentation.ui.TabFragment
@@ -18,6 +19,7 @@ class AnimatedLikeFragment : TabFragment() {
     }
 
     private lateinit var binding: AnimatedLikeFragmentBinding
+    private lateinit var viewModel: AnimatedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +31,9 @@ class AnimatedLikeFragment : TabFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(AnimatedViewModel::class.java)
         binding.setLifecycleOwner(this)
+        binding.model = viewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

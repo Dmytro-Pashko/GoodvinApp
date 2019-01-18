@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">RecyclerExample</string>
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam earum eveniet inventore iure natus optio rem soluta! Alias eveniet exercitationem maxime officiis tempora ut voluptatibus! Accusantium dolore expedita facere vel.</string>
+    <string name="particles_count">Particles Count: %d</string>
+    <string name="start_particle_max_distance">Start particle max distance random: %d dp</string>
+    <string name="max_particle_movement_distance">Max particle movement distance:</string>
+    <string name="start_heart_size_from_all_view">Start heart size %(%from all view):</string>
+    <string name="max_animated_heart_size_from_all_view">Max animated heart size (% from all view):</string>
+    <string name="start_particle_size">Start particle size:</string>
+    <string name="particle_size_scale_factor">Particle size scale factor %:</string>
 </resources>

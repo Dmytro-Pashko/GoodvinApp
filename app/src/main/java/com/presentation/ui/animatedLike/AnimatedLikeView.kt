@@ -174,19 +174,28 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         }
     }
 
-    private val particlesCount = 50
-    private val startDistanceMax = 200.0
+    var particlesCount = 50
+    var startDistanceMax : Float= 200.0f
 
-    private fun generateParticles() = 0.rangeTo(particlesCount).map {
+    private fun generateParticles() = 0.until(particlesCount).map {
         Particle(
             angle = Random.nextInt(360),
-            dist = Random.nextDouble(startDistanceMax),
+            dist = Random.nextFloat() * startDistanceMax,
             path = paths.random(),
             paint = paints.random()
         )
     }
+
+    fun stop() {
+        if (!animationSet.isRunning) {
+            animationSet.cancel()
+            particleDistanceAnimator.cancel()
+            particleSizeAnimator.cancel()
+            invalidate()
+        }
+    }
+
+    private class Particle(val angle: Int, val dist: Float, val path: Path, val paint: Paint)
+
+    private fun Int.toRad() = Math.toRadians(this.toDouble())
 }
-
-private class Particle(val angle: Int, val dist: Double, val path: Path, val paint: Paint)
-
-fun Int.toRad() = Math.toRadians(this.toDouble())
