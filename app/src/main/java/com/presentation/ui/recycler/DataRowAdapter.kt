@@ -4,9 +4,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.R
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.signature.ObjectKey
 import com.domain.model.DataRow
 import com.presentation.utils.ContextProvider.Instance.appContext
 import com.presentation.utils.appInflater
@@ -51,7 +49,6 @@ class DataRowViewHolder(private val binding: DataRowItemBinding) : RecyclerView.
             .load("http://picsum.photos/1000/1000/?random")
             .placeholder(R.drawable.ic_image_placegolder)
             .fitCenter()
-            .signature(ObjectKey(System.currentTimeMillis()))
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(binding.image)

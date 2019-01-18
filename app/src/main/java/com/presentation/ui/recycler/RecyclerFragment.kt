@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.R
 import com.databinding.RecyclerFragmentBinding
+import com.presentation.ui.animatedLike.AnimatedLikeView
 
 /**
  * Created by Dmytro Pashko on 1/10/2019.
@@ -47,6 +48,11 @@ class RecyclerFragment : Fragment() {
         adapter = DataRowAdapter().also {
             binding.list.adapter = it
             ItemTouchHelper(DataRowSwipeHandler(it)).attachToRecyclerView(binding.list)
+        }
+
+        val v = view.findViewById<AnimatedLikeView>(R.id.likeView)
+        v.setOnClickListener {
+            v.doLike()
         }
 
     }
