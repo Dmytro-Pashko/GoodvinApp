@@ -5,23 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.R
 import com.databinding.RecyclerFragmentBinding
+import com.presentation.ui.TabFragment
 import com.presentation.ui.animatedLike.AnimatedLikeView
 
 /**
  * Created by Dmytro Pashko on 1/10/2019.
  */
 
-class RecyclerFragment : Fragment() {
-
+class RecyclerFragment : TabFragment() {
     companion object {
+
         fun newInstance() = RecyclerFragment()
     }
+
+    override val tabName = "Recycler Text Optimization"
 
     private lateinit var viewModel: RecyclerViewModel
     private lateinit var binding: RecyclerFragmentBinding
@@ -49,12 +51,6 @@ class RecyclerFragment : Fragment() {
             binding.list.adapter = it
             ItemTouchHelper(DataRowSwipeHandler(it)).attachToRecyclerView(binding.list)
         }
-
-        val v = view.findViewById<AnimatedLikeView>(R.id.likeView)
-        v.setOnClickListener {
-            v.doLike()
-        }
-
     }
 
     override fun onStart() {

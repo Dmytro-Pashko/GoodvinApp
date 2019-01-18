@@ -5,23 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import com.R
-import com.databinding.FAnimatedLikeBinding
+import com.databinding.AnimatedLikeFragmentBinding
+import com.presentation.ui.TabFragment
 
-class AnimatedLikeFragment : Fragment() {
+class AnimatedLikeFragment : TabFragment() {
+
+    override val tabName = "Like Animation"
 
     companion object {
         fun newInstance() = AnimatedLikeFragment()
     }
 
-    private lateinit var binding: FAnimatedLikeBinding
+    private lateinit var binding: AnimatedLikeFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.f_animated_like, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.animated_like_fragment, container, false)
         return binding.root
     }
 

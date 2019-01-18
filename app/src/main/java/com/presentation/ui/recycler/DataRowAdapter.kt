@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.R
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.domain.model.DataRow
 import com.presentation.utils.ContextProvider.Instance.appContext
 import com.presentation.utils.appInflater
@@ -46,9 +47,10 @@ class DataRowViewHolder(private val binding: DataRowItemBinding) : RecyclerView.
         binding.item = item
 
         GlideApp.with(appContext)
-            .load("http://picsum.photos/1000/1000/?random")
+            .load("http://picsum.photos/360/360/?random")
             .placeholder(R.drawable.ic_image_placegolder)
             .fitCenter()
+            .signature(ObjectKey(System.currentTimeMillis())) //Skip url caching.
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(binding.image)
