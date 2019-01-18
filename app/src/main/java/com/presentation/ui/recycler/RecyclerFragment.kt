@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.recycler.R
-import com.recycler.databinding.RecyclerFragmentBinding
+import com.R
+import com.databinding.RecyclerFragmentBinding
+
+/**
+ * Created by Dmytro Pashko on 1/10/2019.
+ */
 
 class RecyclerFragment : Fragment() {
 

@@ -1,21 +1,28 @@
 package com.presentation.ui.recycler
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.domain.model.DataRow
-import com.recycler.R
-import com.recycler.databinding.DataRowItemBinding
 import com.presentation.utils.ContextProvider.Instance.appContext
+import com.presentation.utils.appInflater
+import com.databinding.DataRowItemBinding
+import com.presentation.utils.GlideApp
+
+/**
+ * Created by Dmytro Pashko on 1/10/2019.
+ */
 
 class DataRowAdapter : RecyclerView.Adapter<DataRowViewHolder>() {
 
     private val list: MutableList<DataRow> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataRowViewHolder {
-        val inflater = LayoutInflater.from(appContext)
-        val binding = DataBindingUtil.inflate<DataRowItemBinding>(inflater, R.layout.data_row_item, parent, false)
+        val binding = DataBindingUtil.inflate<DataRowItemBinding>(appInflater, R.layout.data_row_item, parent, false)
         return DataRowViewHolder(binding)
     }
 
@@ -39,6 +46,17 @@ class DataRowViewHolder(private val binding: DataRowItemBinding) : RecyclerView.
 
     fun bind(item: DataRow) {
         binding.item = item
+
+        GlideApp.with(appContext)
+            .load("http://picsum.photos/1000/1000/?random")
+            .placeholder(R.drawable.ic_image_placegolder)
+            .fitCenter()
+            .signature(ObjectKey(System.currentTimeMillis()))
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(binding.image)
+
         binding.executePendingBindings()
+
     }
 }
