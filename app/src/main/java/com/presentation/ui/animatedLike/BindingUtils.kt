@@ -50,6 +50,18 @@ object BindingUtils {
     }
 
     @JvmStatic
+    @BindingAdapter("android:particleMovementDuration")
+    fun particleMovementDuration(view: AnimatedLikeView, value: ObservableField<Long>) {
+        view.particleMovementDuration = value.get() ?: 0
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:particleScaleFactor")
+    fun particleScaleFactor(view: AnimatedLikeView, value: ObservableField<Float>) {
+        view.particleScaleFactor = value.get() ?: 0.0f
+    }
+
+    @JvmStatic
     @BindingAdapter("android:seekObserver")
     fun intSeekObserver(view: IndicatorSeekBar, observer: ObservableField<Int>) {
         view.onSeekChangeListener = object : OnSeekChangeListener {

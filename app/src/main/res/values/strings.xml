@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">RecyclerExample</string>
+    <string name="app_name">Goodvin App</string>
 
     <string name="particles_count">Particles Count:</string>
     <string name="start_particle_max_distance">Start particle max distance:</string>
-    <string name="max_particle_movement_distance">Max particle movement distance:</string>
+    <string name="particle_movement_distance">Max particle movement distance:</string>
+    <string name="particle_movement_duration">Particle movement duration:</string>
+    <string name="particle_scale_factor">Particle scale factor:</string>
 
     <string name="heart_size">Heart size:</string>
     <string name="heart_animation_duration">Animation heart duration:</string>

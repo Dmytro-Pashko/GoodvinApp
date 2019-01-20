@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         val pager = findViewById<ViewPager>(R.id.pager).apply {
             adapter = PagerAdapter(supportFragmentManager).apply {
-                tabs.add(RecyclerFragment.newInstance())
                 tabs.add(AnimatedLikeFragment.newInstance())
+                tabs.add(RecyclerFragment.newInstance())
             }
         }
 

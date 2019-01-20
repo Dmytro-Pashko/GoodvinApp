@@ -24,6 +24,8 @@
             android:particleCount="@{model.particlesCount}"
             android:particleStartDist="@{model.particleStartDist}"
             android:particleMovementDist="@{model.particleMovementDist}"
+            android:particleMovementDuration="@{model.particleMovementDuration}"
+            android:particleScaleFactor="@{model.particleScaleFactor}"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,9 +46,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/likeView">
 
-            <include layout="@layout/animated_like_configuration"
-                app:model="@{model}"
-                />
+            <include
+                layout="@layout/animated_like_configuration"
+                app:model="@{model}" />
 
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

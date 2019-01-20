@@ -33,13 +33,11 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         R.drawable.animation_particle_square.asVector()
     )
 
-    private val startAnimator: ValueAnimator = ValueAnimator.ofFloat(0f, 0.4f).also {
-        it.duration = 500
+    private val startAnimator: ValueAnimator = ValueAnimator.ofFloat().also {
         it.interpolator = LinearOutSlowInInterpolator()
     }
 
-    private val backAnimator: ValueAnimator = ValueAnimator.ofFloat(0.4f, 0f).also {
-        it.duration = 150
+    private val backAnimator: ValueAnimator = ValueAnimator.ofFloat().also {
         it.interpolator = LinearInterpolator()
     }
 
@@ -47,13 +45,11 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         it.playSequentially(startAnimator, backAnimator)
     }
 
-    private val particleSizeAnimator: ValueAnimator = ValueAnimator.ofFloat(40f, 60f, 0f).also {
-        it.duration = 750
+    private val particleSizeAnimator: ValueAnimator = ValueAnimator.ofFloat().also {
         it.interpolator = LinearInterpolator()
     }
 
     private val particleDistanceAnimator: ValueAnimator = ValueAnimator.ofFloat(0f, 1f).also {
-        it.duration = 750
         it.interpolator = LinearOutSlowInInterpolator()
     }
 
@@ -77,17 +73,22 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
 
     var heartSize = 0.4f
         set(@FloatRange(from = 0.0, to = 1.0) value) {
+            stop()
             field = value
             invalidate()
         }
     var heartAnimationDuration = 750L
         set(value) {
+            stop()
+            field = value
             startAnimator.duration = (value * 0.75).toLong()
             backAnimator.duration = (value * 0.25).toLong()
             invalidate()
         }
     var heartScaleFactor = 0.4f
         set(@FloatRange(from = 0.0, to = 1.0) value) {
+            stop()
+            field = value
             startAnimator.setFloatValues(0f, value)
             backAnimator.setFloatValues(value, 0f)
             invalidate()
@@ -132,11 +133,44 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         }
     }
 
-    var particlesCount = 50
-    var particleStartDist = 200.0f
-    var particleMovementDist = 200.0f
-
     private lateinit var particles: List<Particle>
+
+    var particlesCount = 50
+        set(value) {
+            stop()
+            field = value
+            invalidate()
+        }
+    var particleStartDist = 200.0f
+        set(value) {
+            stop()
+            field = value
+            invalidate()
+        }
+
+    var particleMovementDist = 200.0f
+        set(value) {
+            stop()
+            field = value
+            invalidate()
+        }
+
+    var particleMovementDuration = 750L
+        set(value) {
+            stop()
+            field = value
+            particleDistanceAnimator.duration = value
+            particleSizeAnimator.duration = value
+            invalidate()
+        }
+
+    var particleScaleFactor = 2.0f
+        set(value) {
+            stop()
+            field = value
+            particleSizeAnimator.setFloatValues(0.5f, value, -1f)
+            invalidate()
+        }
 
     private fun generateParticles() = 0.until(particlesCount).map {
         Particle(
@@ -154,14 +188,24 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
             val distance = particleMovementDist * particleDistanceAnimator.animatedValue as Float
             val scale = particleSizeAnimator.animatedValue as Float
 
+
             for (particle in particles) {
 
                 particle.drawable.setColorFilter(particle.color, PorterDuff.Mode.SRC_IN)
 
-                val x = width / 2 + cos(particle.angle.toRad()) * (particle.dist + distance)
-                val y = height / 2 + sin(particle.angle.toRad()) * (particle.dist + distance)
+                val x: Int = (width / 2 + cos(particle.angle.toRad()) * (particle.dist + distance)).toInt()
+                val y: Int = (height / 2 + sin(particle.angle.toRad()) * (particle.dist + distance)).toInt()
 
-                particle.drawable.setBounds(x.toInt(), y.toInt(), (x + 50.0).toInt(), (y + 50.0).toInt())
+                val w: Int
+                particle.drawable.intrinsicWidth.also {
+                    w = it + (it * scale).toInt()
+                }
+                val h: Int
+                particle.drawable.intrinsicHeight.also {
+                    h = it + (it * scale).toInt()
+                }
+
+                particle.drawable.setBounds(x - w / 2, y - h / 2, x + w, y + h)
                 particle.drawable.draw(canvas)
 
             }
@@ -178,7 +222,7 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         }
     }
 
-    fun stop() {
+    private fun stop() {
         if (isAnimationRunning) {
             heartAnimatorSet.cancel()
             particleDistanceAnimator.cancel()

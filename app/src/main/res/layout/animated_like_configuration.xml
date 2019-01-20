@@ -11,8 +11,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="1.0"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="0.4"
             app:isb_progress_value_float="true"
             app:isb_seek_smoothly="true"
@@ -56,7 +57,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="2500"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="500"
             app:isb_seek_smoothly="true"
             app:isb_show_indicator="rounded_rectangle"
@@ -84,7 +85,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="1.0"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="0.2"
             app:isb_progress_value_float="true"
             app:isb_seek_smoothly="true"
@@ -98,7 +99,7 @@
             app:isb_ticks_count="6"
             app:isb_track_background_size="2dp"
             app:isb_track_progress_size="4dp" />
-        
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +114,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="100"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="50"
             app:isb_seek_smoothly="true"
             app:isb_show_indicator="rounded_rectangle"
@@ -140,7 +141,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="500"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="50"
             app:isb_seek_smoothly="true"
             app:isb_show_indicator="rounded_rectangle"
@@ -157,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="@string/max_particle_movement_distance"
+            android:text="@string/particle_movement_distance"
             android:textSize="18sp" />
 
         <com.warkiz.widget.IndicatorSeekBar
@@ -167,7 +168,7 @@
             app:isb_indicator_text_size="18sp"
             app:isb_max="500"
             app:isb_min="0"
-            app:isb_only_thumb_draggable="true"
+            app:isb_only_thumb_draggable="false"
             app:isb_progress="50"
             app:isb_seek_smoothly="true"
             app:isb_show_indicator="rounded_rectangle"
@@ -177,6 +178,61 @@
             app:isb_tick_marks_size="8dp"
             app:isb_tick_texts_size="16sp"
             app:isb_ticks_count="6"
+            app:isb_track_background_size="2dp"
+            app:isb_track_progress_size="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/particle_movement_duration"
+            android:textSize="18sp" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:seekObserver="@{model.particleMovementDuration}"
+            app:isb_indicator_text_size="18sp"
+            app:isb_max="2000"
+            app:isb_min="0"
+            app:isb_only_thumb_draggable="false"
+            app:isb_progress="500"
+            app:isb_seek_smoothly="true"
+            app:isb_show_indicator="rounded_rectangle"
+            app:isb_show_tick_marks_type="oval"
+            app:isb_show_tick_texts="true"
+            app:isb_thumb_size="8dp"
+            app:isb_tick_marks_size="8dp"
+            app:isb_tick_texts_size="14sp"
+            app:isb_ticks_count="6"
+            app:isb_track_background_size="2dp"
+            app:isb_track_progress_size="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/particle_scale_factor"
+            android:textSize="18sp" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:seekObserver="@{model.particleScaleFactor}"
+            app:isb_indicator_text_size="18sp"
+            app:isb_max="2.5"
+            app:isb_min="0.2"
+            app:isb_only_thumb_draggable="false"
+            app:isb_progress="1"
+            app:isb_progress_value_float="true"
+            app:isb_seek_smoothly="true"
+            app:isb_show_indicator="rounded_rectangle"
+            app:isb_show_tick_marks_type="oval"
+            app:isb_show_tick_texts="true"
+            app:isb_thumb_size="8dp"
+            app:isb_tick_marks_size="8dp"
+            app:isb_tick_texts_size="14sp"
+            app:isb_ticks_count="10"
             app:isb_track_background_size="2dp"
             app:isb_track_progress_size="4dp" />
 
