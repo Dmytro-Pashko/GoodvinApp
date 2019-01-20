@@ -41,7 +41,7 @@ class AnimatedLikeFragment : TabFragment() {
 
         val v = view.findViewById<AnimatedLikeView>(R.id.likeView)
         v.setOnClickListener {
-            v.doLike()
+            v.start()
         }
 
     }

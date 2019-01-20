@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
@@ -9,7 +10,9 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.presentation.ui.MainActivity">
+        <activity android:name=".presentation.ui.downloading.Download">
+        </activity>
+        <activity android:name=".presentation.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,7 +20,9 @@
             </intent-filter>
         </activity>
 
-        <provider android:authorities="com.goodvin.app" android:name="com.presentation.utils.ContextProvider"/>
+        <provider
+                android:name=".presentation.utils.ContextProvider"
+                android:authorities="com.goodvin.app"/>
     </application>
 
 </manifest>
