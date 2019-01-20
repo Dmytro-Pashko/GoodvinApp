@@ -6,6 +6,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.annotation.FloatRange
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.R
@@ -74,9 +75,25 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         }
     }
 
-    private val startHeartSize = 0.4f
-    private val heart = R.drawable.ic_heart.asVector()
+    var heartSize = 0.4f
+        set(@FloatRange(from = 0.0, to = 1.0) value) {
+            field = value
+            invalidate()
+        }
+    var heartAnimationDuration = 750L
+        set(value) {
+            startAnimator.duration = (value * 0.75).toLong()
+            backAnimator.duration = (value * 0.25).toLong()
+            invalidate()
+        }
+    var heartScaleFactor = 0.4f
+        set(@FloatRange(from = 0.0, to = 1.0) value) {
+            startAnimator.setFloatValues(0f, value)
+            backAnimator.setFloatValues(value, 0f)
+            invalidate()
+        }
 
+    private val heart = R.drawable.ic_heart.asVector()
     private var heartAspectRatio = calculateHeartRatio()
 
     private fun drawHeart(canvas: Canvas) {
@@ -89,10 +106,10 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
         else 0f
 
         if (width > height) {
-            heartHeight = (height * (startHeartSize + animatedValue)).toInt()
+            heartHeight = (height * (heartSize + animatedValue)).toInt()
             heartWidth = (heartHeight / heartAspectRatio).toInt()
         } else {
-            heartWidth = (width * (startHeartSize + animatedValue)).toInt()
+            heartWidth = (width * (heartSize + animatedValue)).toInt()
             heartHeight = (heartWidth / heartAspectRatio).toInt()
         }
 
@@ -116,15 +133,15 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
     }
 
     var particlesCount = 50
-    var startDistanceMax = 200.0f
-    private val maxMoveDistance = 200.0
+    var particleStartDist = 200.0f
+    var particleMovementDist = 200.0f
 
     private lateinit var particles: List<Particle>
 
     private fun generateParticles() = 0.until(particlesCount).map {
         Particle(
             angle = Random.nextInt(360),
-            dist = Random.nextFloat() * startDistanceMax,
+            dist = Random.nextFloat() * particleStartDist,
             drawable = particlesDrawable.random(),
             color = colors.random()
         )
@@ -134,7 +151,7 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
 
         if (particleDistanceAnimator.isRunning) {
 
-            val distance = maxMoveDistance * particleDistanceAnimator.animatedValue as Float
+            val distance = particleMovementDist * particleDistanceAnimator.animatedValue as Float
             val scale = particleSizeAnimator.animatedValue as Float
 
             for (particle in particles) {

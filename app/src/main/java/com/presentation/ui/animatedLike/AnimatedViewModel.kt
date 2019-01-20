@@ -11,7 +11,11 @@ import com.domain.model.DataRow
 
 class AnimatedViewModel : ViewModel() {
 
-    val particlesCount = ObservableField(5)
-    val startParticleMaxDistance = ObservableField(2)
+    val particlesCount = ObservableField(50)
+    val particleStartDist = ObservableField(200)
+    val particleMovementDist = ObservableField(200)
 
+    val heartSize = ObservableField<Float>(0.4f)
+    val heartAnimationDuration = ObservableField<Long>(500)
+    val heartScaleFactor = ObservableField<Float>(0.2f)
 }
