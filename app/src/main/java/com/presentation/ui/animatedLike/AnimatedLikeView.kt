@@ -77,7 +77,7 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
             field = value
             invalidate()
         }
-    var heartAnimationDuration = 750L
+    var heartAnimationDuration = 750
         set(value) {
             stop()
             field = value
@@ -155,12 +155,12 @@ class AnimatedLikeView : View, ValueAnimator.AnimatorUpdateListener {
             invalidate()
         }
 
-    var particleMovementDuration = 750L
+    var particleMovementDuration = 750
         set(value) {
             stop()
             field = value
-            particleDistanceAnimator.duration = value
-            particleSizeAnimator.duration = value
+            particleDistanceAnimator.duration = value.toLong()
+            particleSizeAnimator.duration = value.toLong()
             invalidate()
         }
 

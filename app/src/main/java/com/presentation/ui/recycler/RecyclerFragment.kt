@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import com.R
 import com.databinding.RecyclerFragmentBinding
 import com.presentation.ui.TabFragment
-import com.presentation.ui.animatedLike.AnimatedLikeView
 
 /**
  * Created by Dmytro Pashko on 1/10/2019.
@@ -23,7 +22,7 @@ class RecyclerFragment : TabFragment() {
         fun newInstance() = RecyclerFragment()
     }
 
-    override val tabName = "Recycler Text Optimization"
+    override val tabName = "Swipe to remove"
 
     private lateinit var viewModel: RecyclerViewModel
     private lateinit var binding: RecyclerFragmentBinding

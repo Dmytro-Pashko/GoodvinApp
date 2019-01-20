@@ -39,7 +39,7 @@ object BindingUtils {
 
     @JvmStatic
     @BindingAdapter("android:heartAnimationDuration")
-    fun heartAnimationDuration(view: AnimatedLikeView, value: ObservableField<Long>) {
+    fun heartAnimationDuration(view: AnimatedLikeView, value: ObservableField<Int>) {
         view.heartAnimationDuration = value.get() ?: 0
     }
 
@@ -51,7 +51,7 @@ object BindingUtils {
 
     @JvmStatic
     @BindingAdapter("android:particleMovementDuration")
-    fun particleMovementDuration(view: AnimatedLikeView, value: ObservableField<Long>) {
+    fun particleMovementDuration(view: AnimatedLikeView, value: ObservableField<Int>) {
         view.particleMovementDuration = value.get() ?: 0
     }
 
@@ -97,22 +97,15 @@ object BindingUtils {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("app:isb_progress")
+    fun setFloatProgress(view: IndicatorSeekBar, observer: ObservableField<Float>) {
+        view.setProgress(observer.get() ?: 0f)
+    }
 
     @JvmStatic
-    @BindingAdapter("android:seekObserver")
-    fun longSeekObserver(view: IndicatorSeekBar, observer: ObservableField<Long>) {
-        view.onSeekChangeListener = object : OnSeekChangeListener {
-
-            override fun onSeeking(seekParams: SeekParams?) {
-                if (seekParams != null) {
-                    observer.set(seekParams.progress.toLong())
-                }
-            }
-
-            override fun onStartTrackingTouch(seekBar: IndicatorSeekBar?) {}
-
-            override fun onStopTrackingTouch(seekBar: IndicatorSeekBar?) {}
-
-        }
+    @BindingAdapter("app:isb_progress")
+    fun setIntProgress(view: IndicatorSeekBar, observer: ObservableField<Int>) {
+        view.setProgress((observer.get() ?: 0).toFloat())
     }
 }

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 class AnimatedViewModel : ViewModel() {
 
     val heartSize = ObservableField<Float>(0.4f)
-    val heartAnimationDuration = ObservableField<Long>(500)
+    val heartAnimationDuration = ObservableField(500)
     val heartScaleFactor = ObservableField<Float>(0.2f)
 
     val particlesCount = ObservableField(50)
